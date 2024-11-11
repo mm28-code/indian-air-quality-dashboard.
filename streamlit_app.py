@@ -27,11 +27,13 @@ if check_credentials():
     powerbi_url = "https://app.powerbi.com/view?r=eyJrIjoiZjdlZjg3NDUtNjcwNC00MWY3LWE5OWYtZTIxZDQ4NTY0NDliIiwidCI6ImRjNTdkYjliLWNjNTQtNDI5Yi1iOWU4LTBhZmZhMzZmMDY2NiJ9"
     
     # Embed Power BI report inside an iframe (adjusted width and height)
-    st.markdown(f'<iframe width="100%" height="75%" src="{powerbi_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
+    st.markdown(f'<iframe width="100%" height="80vh" src="{powerbi_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
     
     # Feedback Section with Rating
     st.subheader("Feedback")
-    rating = st.slider("Rate the Dashboard:", 1, 5, 3)
+    
+    # Adding a rating slider
+    rating = st.slider("Rate the Dashboard:", min_value=1, max_value=5, value=3)
     st.write(f"Your Rating: {rating} stars")
     
     feedback = st.text_area("Please provide your feedback:")
