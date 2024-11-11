@@ -23,7 +23,7 @@ if check_credentials():
     # Display your dashboard after successful login
     st.title("Indian Air Quality Dashboard")
 
-    # Power BI embed URL (replace with your actual Power BI link)
+    # Power BI embed URL (using the URL you provided)
     powerbi_url = "https://app.powerbi.com/view?r=eyJrIjoiZjdlZjg3NDUtNjcwNC00MWY3LWE5OWYtZTIxZDQ4NTY0NDliIiwidCI6ImRjNTdkYjliLWNjNTQtNDI5Yi1iOWU4LTBhZmZhMzZmMDY2NiJ9"
     
     # Embed Power BI report inside an iframe (adjusted width and height)
