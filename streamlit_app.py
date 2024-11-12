@@ -30,10 +30,9 @@ if not st.session_state.logged_in:
         if check_credentials(username, password):
             st.session_state.logged_in = True
             st.success("Logged in successfully!")
-            # Redirect to dashboard after delay
+            # Simulate a short loading period
             with st.spinner('Loading Dashboard...'):
                 time.sleep(1)
-            st.experimental_rerun()  # Refresh the page to show dashboard
         else:
             st.warning("Incorrect Username or Password")
 else:
