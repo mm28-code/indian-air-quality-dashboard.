@@ -6,7 +6,7 @@ import time
 
 # Set your username and password
 USERNAME = "mm28"
-PASSWORD = "manish@28"
+PASSWORD = "manish"
 
 # Function to check credentials
 def check_credentials():
