@@ -1,12 +1,14 @@
 import streamlit as st
 import pandas as pd
+import openai  # Ensure openai library is installed
 import base64
 import io
 import time
 
-# Set your username and password
+# Set your OpenAI API key and credentials
+openai.api_key = "your_openai_api_key"
 USERNAME = "mm28"
-PASSWORD = "manish"
+PASSWORD = "manish@28"
 
 # Function to check credentials
 def check_credentials():
@@ -25,6 +27,8 @@ if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
 if 'show_dashboard' not in st.session_state:
     st.session_state.show_dashboard = False
+if 'chat_history' not in st.session_state:
+    st.session_state.chat_history = []  # Store chat history for chatbot
 
 # **Login and Redirect Logic**
 if not st.session_state.logged_in:
@@ -83,3 +87,26 @@ else:
             file_name="air_quality_data.csv",
             mime="text/csv"
         )
+
+        # **Chatbot Section**
+        st.subheader("Ask the Chatbot")
+        user_message = st.text_input("You: ")
+        
+        # Process the chatbot's response
+        if user_message:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": user_message}
+                ]
+            )
+            bot_reply = response['choices'][0]['message']['content']
+            
+            # Append the interaction to chat history
+            st.session_state.chat_history.append(("You", user_message))
+            st.session_state.chat_history.append(("Chatbot", bot_reply))
+        
+        # Display chat history
+        for sender, message in st.session_state.chat_history:
+            st.write(f"**{sender}:** {message}")
