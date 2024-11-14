@@ -1,13 +1,11 @@
 import streamlit as st
 import pandas as pd
-import base64
-import io
 import time
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-# Set your username and password
+# Set your username and password for the dashboard
 USERNAME = "mm28"
 PASSWORD = "manish@28"
 
@@ -88,6 +86,8 @@ else:
             rating = st.slider("Rate the Dashboard:", min_value=1, max_value=5, value=3)
         st.write(f"Your Rating: {rating} stars")
         feedback = st.text_area("Please provide your feedback (below):")
+        
+        # Send feedback via email when the button is pressed
         if st.button("Submit Feedback"):
             if send_feedback_email(rating, feedback):
                 st.success("Thank you for your feedback! Your feedback has been sent via email.")
